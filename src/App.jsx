@@ -1,20 +1,25 @@
-// File: src/App.js
-import React from 'react';
-import "./App.css";
+import React from "react";
 
-function App() {
-  return (
-    <div>
-     <article>
-      <h1 className="App">My First Component</h1>
-      <ol>
-        <li>Components: UI Building Blocks</li>
-        <li>Defining a Component</li>
-        <li>Using a Component</li>
-      </ol>
-    </article>
-    </div>
-  );
+
+function isBalanced(str){
+  const stack = [];
+  const map= {')': '(', ']': '[','}': '{'};
+  for(let i =0; i<str.length; i++) {
+    if(str[i] === "(" || str[i] === "[" || str[i] === "{"){
+      stack.push(str[i]);
+    }
+    else if(stack[stack.length -1] === map[str[i]])
+   {
+     stack.pop()
+    }     
+    else return false;
+  }
+  return stack.length ? false : true;
 }
 
-export default App; // Don't forget to export it!
+export default function App() {
+
+  console.log("----")
+  console.log(isBalanced("{)))}"));
+  // return isBalanced("[()]");
+}
